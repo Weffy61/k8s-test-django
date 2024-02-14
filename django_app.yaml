@@ -31,10 +31,9 @@ metadata:
   labels:
     app: django
 spec:
-  type: NodePort
+  type: ClusterIP
   selector:
     project: django-web-app
   ports:
     - port: 80
       targetPort: 80
-      nodePort: 30000

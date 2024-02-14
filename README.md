@@ -82,7 +82,7 @@ $ docker compose build web
 Работа сайта также возможна в кластере Kubernetes
 
 ### Предварительная подготовка
-Для запуска в тестовом редиме вам понадобтся [kubectl](https://kubernetes.io/ru/docs/tasks/tools/install-kubectl/), а также 
+Для запуска в тестовом режиме вам понадобятся [kubectl](https://kubernetes.io/ru/docs/tasks/tools/install-kubectl/), а также 
 [Minikube](https://kubernetes.io/ru/docs/tasks/tools/install-minikube/). 
 
 ### Kubernetes Environment
@@ -91,16 +91,25 @@ $ docker compose build web
 
 ### Создание кластера
 
-Выполните команду:
+Выполните команды:
 
 ```shell
  kubectl apply -f django_app.yaml
+ kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.8.2/deploy/static/provider/cloud/deploy.yaml
+ kubectl apply -f ingress-hosts.yaml
 ```
 
-При работе с Minikube выполните команду:
+#### Minikube
+
+При работе в Minikube выполните команду:
 
 ```shell
-minikube service django-service --url
+minikube addons enable ingress
 ```
 
-По полученному адресу будет развернут ваш веб проект.
+Добавьте в ваш файл `hosts` пару - ip адрес вашей виртуальной машины и домен `star-burger.test`. 
+[Инструкция по добавлению](https://help.reg.ru/support/dns-servery-i-nastroyka-zony/rabota-s-dns-serverami/fayl-hosts-gde-nakhoditsya-i-kak-yego-izmenit).  
+Для получения Ip адреса выполните команду:
+```shell
+minikube ip
+```
