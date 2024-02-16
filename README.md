@@ -110,6 +110,12 @@ kubectl apply -f clear-session-job.yaml
 kubectl create job --from=cronjob/clearsessions-cronjob clearsessions-job
 ```
 
+Для выполнения миграции выполните команду:
+
+```shell
+kubectl apply -f django-migrate-job.yaml
+```
+
 #### Minikube
 
 При работе в Minikube выполните команду:
