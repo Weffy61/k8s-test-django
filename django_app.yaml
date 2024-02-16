@@ -58,23 +58,3 @@ spec:
               name: django-service
               port:
                 number: 80
-
----
-apiVersion: batch/v1
-kind: Job
-metadata:
-  name: django-clearsessions
-spec:
-  template:
-    metadata:
-      labels:
-        app: django
-    spec:
-      containers:
-      - name: django
-        image: weffy/django_app:latest
-        envFrom:
-          - secretRef:
-              name: django-secret
-        command: ["python3", "manage.py", "clearsessions"]
-      restartPolicy: OnFailure

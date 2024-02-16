@@ -98,6 +98,18 @@ $ docker compose build web
  kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.8.2/deploy/static/provider/cloud/deploy.yaml
 ```
 
+Для выполнения в Django `clearsession` ежемесячно выполните команду:
+
+```shell
+kubectl apply -f clear-session-job.yaml
+```
+
+Если захотите запустить вручную:
+
+```shell
+kubectl create job --from=cronjob/clearsessions-cronjob clearsessions-job
+```
+
 #### Minikube
 
 При работе в Minikube выполните команду:
